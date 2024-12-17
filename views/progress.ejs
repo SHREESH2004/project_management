@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Progress</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; color: #333;">
+
+  <!-- Header -->
+  <h1 style="text-align: center; color: #007bff; margin-bottom: 20px;">Project Progress</h1>
+  
+  <!-- Display Tasks -->
+  <% if (tasks && tasks.length > 0) { %>
+    <ul style="list-style: none; padding: 0;">
+      <% tasks.forEach(task => { %>
+        <li style="margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff;">
+          <strong style="font-size: 1.1em;"><%= task.title %></strong> - 
+          <span style="font-size: 1em; color: <%= task.status === 'Completed' ? '#28a745' : '#dc3545' %>;">
+            <%= task.status %>
+          </span>
+
+          <!-- Form to mark a task as complete -->
+          <% if (task.status !== 'Completed') { %>
+            <form action="/update-task-status/<%= task._id %>" method="POST" style="display: inline;">
+              <button type="submit" 
+                      style="margin-left: 10px; padding: 5px 10px; border: none; border-radius: 3px; background-color: #28a745; color: white; cursor: pointer;">
+                Mark as Complete
+              </button>
+            </form>
+          <% } else { %>
+            <span style="color: #28a745; font-weight: bold; margin-left: 10px;">✔ Completed</span>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p style="text-align: center; color: #888; font-size: 1.1em;">No tasks available for this project.</p>
+  <% } %>
+
+  <!-- Navigation Back to Dashboard -->
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="/dashboard" 
+       style="text-decoration: none; color: #fff; background-color: #007bff; padding: 8px 15px; border-radius: 5px; font-weight: bold;">
+      Back to Dashboard
+    </a>
+  </div>
+</body>
+</html>

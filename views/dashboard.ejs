@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candidate Dashboard</title>
+  <!-- Inline CSS for Table Styling -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #eaf4ff;
+    }
+
+    button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      background-color: #28a745;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    form {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Dashboard Title -->
+  <h1>Candidate Dashboard</h1>
+
+  <!-- Project Table -->
+  <table>
+    <tr>
+      <th>Project</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    <% if (projects.length > 0) { %>
+      <% projects.forEach(project => { %>
+        <tr>
+          <td><%= project.name %></td>
+          <td><%= project.description %></td>
+          <td style="color: <%= project.status === 'Accepted' ? '#28a745' : '#dc3545' %>;">
+            <%= project.status %>
+          </td>
+          <td>
+            <% if (project.status !== 'Accepted') { %>
+              <form action="/projects/accept/<%= project._id %>" method="POST">
+                <button type="submit">Accept</button>
+              </form>
+            <% } else { %>
+              <span style="color: #28a745; font-weight: bold;">Accepted</span>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr>
+        <td colspan="4" style="text-align: center; padding: 20px; color: #888;">
+          No projects available at the moment.
+        </td>
+      </tr>
+    <% } %>
+  </table>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Assignment System</title>
+
+  <!-- Inline CSS for quick styling -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #333;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 2rem auto;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <h1>Project Assignment System</h1>
+  </header>
+
+  <!-- Dynamic Content Section -->
+  <div class="container">
+    <%- body %>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    &copy; <%= new Date().getFullYear() %> Project Assignment System. All Rights Reserved.
+  </footer>
+</body>
+</html>
